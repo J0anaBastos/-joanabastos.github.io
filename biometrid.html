@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biometrid — Joana Bastos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #111110;
+      --bg-mid:  #191917;
+      --bg-card: #1e1e1b;
+      --lime:    #c8f135;
+      --white:   #f0ede6;
+      --muted:   #7a7a72;
+      --border:  rgba(240,237,230,0.10);
+      --serif:   'Playfair Display', Georgia, serif;
+      --sans:    'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--white);
+      font-family: var(--sans); font-size: 15px;
+      line-height: 1.65; overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 52px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 36px;
+      background: rgba(17,17,16,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--serif); font-weight: 900; font-size: 1rem; color: var(--white); text-decoration: none; }
+    .nav-center { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-center a { color: var(--white); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; transition: opacity 0.2s; }
+    .nav-center a:hover { opacity: 1; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > span { color: var(--white); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; cursor: pointer; user-select: none; }
+    .nav-dropdown:hover > span { opacity: 1; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); left: 0; background: var(--bg-card); border: 1px solid var(--border); min-width: 150px; flex-direction: column; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: flex; }
+    .nav-dropdown-menu a { display: block; padding: 11px 18px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); text-decoration: none; opacity: 0.65; border-bottom: 1px solid var(--border); transition: opacity 0.2s; }
+    .nav-dropdown-menu a:last-child { border-bottom: none; }
+    .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { opacity: 1; color: var(--lime); }
+    .btn-nav { background: var(--lime); color: #111; font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 9px 18px; text-decoration: none; }
+    .btn-nav:hover { opacity: 0.85; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); }
+    .mobile-nav { display: none; position: fixed; top: 52px; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 199; flex-direction: column; padding: 40px 32px; gap: 4px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: var(--white); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .mobile-nav a:hover { color: var(--lime); }
+    .mobile-nav .btn-nav { font-family: var(--sans); font-size: 0.8rem; margin-top: 20px; text-align: center; display: block; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 100px 36px 48px;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .breadcrumb span { opacity: 0.45; }
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      font-weight: 900; letter-spacing: -0.02em; line-height: 1.05;
+    }
+
+    /* CONTENT */
+    .content { max-width: 1240px; margin: 0 auto; padding: 0 36px 100px; }
+
+    /* Intro row */
+    .intro-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-bottom: 64px;
+    }
+    .intro-box {
+      padding: 28px 28px 32px;
+      border: 1px solid var(--border);
+    }
+    .intro-box.highlight {
+      border-color: rgba(200,241,53,0.4);
+      background: rgba(200,241,53,0.025);
+    }
+    .box-label {
+      font-size: 0.60rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--lime); margin-bottom: 14px;
+    }
+    .box-text {
+      font-size: 0.80rem; color: rgba(240,237,230,0.68); line-height: 1.78;
+    }
+    .box-text strong { color: var(--white); font-weight: 500; }
+    .box-text em { font-style: italic; }
+
+    /* 3-col scope */
+    .scope-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; margin-bottom: 64px;
+    }
+    .scope-col-label {
+      font-size: 0.60rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); border-top: 1px solid var(--border);
+      padding-top: 14px; margin-bottom: 22px;
+    }
+    .scope-bullets { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .scope-bullets li {
+      font-size: 0.78rem; color: rgba(240,237,230,0.68);
+      line-height: 1.72; padding-left: 14px; position: relative;
+    }
+    .scope-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--muted); }
+    .scope-bullets li strong { color: var(--white); font-weight: 500; }
+
+    /* Screen + features side-by-side */
+    .split-row {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 24px; margin-bottom: 64px; align-items: start;
+    }
+    .split-row.reverse { grid-template-columns: 1fr 1.1fr; }
+    .split-row.reverse .screen-col { order: 2; }
+    .split-row.reverse .features-col { order: 1; }
+
+    .screen-col {
+      background: var(--bg-card); border: 1px solid var(--border);
+      min-height: 380px; display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .screen-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .screen-placeholder {
+      text-align: center; color: var(--muted);
+      padding: 32px;
+    }
+    .screen-placeholder p { font-size: 0.72rem; letter-spacing: 0.08em; margin-top: 8px; }
+
+    .features-col { display: flex; flex-direction: column; gap: 0; }
+    .feature-item {
+      padding: 20px 0 20px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 36px 1fr; gap: 14px;
+      align-items: start;
+    }
+    .feature-item:first-child { border-top: 1px solid var(--border); }
+    .feature-icon {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; margin-top: 2px; flex-shrink: 0;
+    }
+    .feature-title { font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; }
+    .feature-desc { font-size: 0.75rem; color: rgba(240,237,230,0.62); line-height: 1.68; }
+
+    /* scroll-to-top floating btn */
+    .fab {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 42px; height: 42px;
+      background: var(--lime); color: #111;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(200,241,53,0.25);
+      z-index: 150; transition: opacity 0.2s;
+    }
+    .fab:hover { opacity: 0.85; }
+
+    /* CTA */
+    .cta-wrap {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 100px 36px 60px; text-align: center;
+    }
+    .cta-headline { font-family: var(--serif); font-size: clamp(3rem, 7.5vw, 7rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 16px; }
+    .cta-headline em { font-style: italic; color: var(--lime); }
+    .cta-sub { font-size: 0.80rem; color: var(--muted); max-width: 310px; margin: 0 auto 40px; }
+    .cta-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .cta-btn { display: flex; flex-direction: column; align-items: flex-start; padding: 14px 22px; border: 1px solid var(--border); text-decoration: none; color: var(--white); min-width: 185px; transition: border-color 0.2s; }
+    .cta-btn:hover { border-color: var(--lime); }
+    .cta-btn-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .cta-btn-val { font-size: 0.82rem; font-weight: 500; }
+    .cta-sig { margin-top: 44px; font-family: var(--serif); font-size: 0.82rem; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-name { font-family: var(--serif); font-size: 0.80rem; font-weight: 700; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .intro-row, .scope-row, .split-row, .split-row.reverse { grid-template-columns: 1fr; }
+      .split-row.reverse .screen-col, .split-row.reverse .features-col { order: unset; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-center, .btn-nav { display: none; }
+      .hamburger { display: flex; }
+      .page-header { padding: 80px 20px 36px; }
+      .content { padding: 0 20px 72px; }
+      .cta-wrap { padding: 72px 20px 48px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-btn { width: 100%; max-width: 280px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 20px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .breadcrumb { animation: fadeUp 0.5s ease 0.05s both; }
+    .page-title  { animation: fadeUp 0.5s ease 0.15s both; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">JB.</a>
+  <ul class="nav-center">
+    <li><a href="index.html#about">About</a></li>
+    <li class="nav-dropdown">
+      <span>Work ▾</span>
+      <div class="nav-dropdown-menu">
+        <a href="biometrid.html" class="active">Biometrid</a>
+        <a href="iberdrola.html">Iberdrola</a>
+      </div>
+    </li>
+    <li><a href="index.html#experience">Experience</a></li>
+  </ul>
+  <a href="mailto:junabastos@outlook.pt" class="btn-nav">Get in touch</a>
+  <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html#about">About</a>
+  <a href="biometrid.html">Biometrid</a>
+  <a href="iberdrola.html">Iberdrola</a>
+  <a href="index.html#experience">Experience</a>
+  <a href="mailto:junabastos@outlook.pt" class="btn-nav">Get in touch</a>
+</div>
+
+<a href="#" class="fab" title="Back to top">↑</a>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <span>AI/ML UX</span>
+    <span>·</span>
+    <span>KYC/AML Compliance</span>
+    <span>·</span>
+    <span>Design System</span>
+    <span>·</span>
+    <span>Back Office</span>
+  </div>
+  <h1 class="page-title">Biometrid Identity Verification</h1>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- Intro + Impact -->
+  <div class="intro-row">
+    <div class="intro-box">
+      <div class="box-label">Introduction</div>
+      <p class="box-text">Biometrid is Portugal's market leader in AI-powered identity verification, covering 248 countries and 10,000+ document types, used by banks, fintechs, and management agencies. I designed both sides of the product: the user-facing verification flows and the operator tools that manage them, from automated biometric journeys to the call centre platform where human agents handle edge cases and identity disputes in real time.</p>
+    </div>
+    <div class="intro-box highlight">
+      <div class="box-label">Full-Product Scope &amp; Impact</div>
+      <p class="box-text">Designed across the <strong>entire product ecosystem</strong> (user-facing verification flows, operator back office, and the human-in-the-loop call centre platform) demonstrating end-to-end product thinking across both consumer and enterprise surfaces. Featured in the <strong>Portugal Fintech Report 2023</strong>. Strategic partner to Proov (global biometric standards). Platform active across <strong>248 countries</strong>, where every UX decision carries regulatory and commercial consequences.</p>
+    </div>
+  </div>
+
+  <!-- 3-col scope -->
+  <div class="scope-row">
+    <div>
+      <div class="scope-col-label">① User-Facing Verification</div>
+      <ul class="scope-bullets">
+        <li>End-to-end KYC verification flow redesign <strong>reducing the number of steps</strong> to completion while maintaining full regulatory compliance.</li>
+        <li>Designed an <strong>automated video conference feature</strong> for real-time liveness detection and document validation — the platform's most trust-sensitive and technically complex user interaction, with no human on the other side.</li>
+        <li>Improved the <strong>no-code flow builder</strong> enabling B2B clients to configure and brand their own verification journeys without engineering resource, directly supporting Biometrid's commercial scalability.</li>
+        <li>Design modular contract data architecture so users could add, edit, or remove components independently without breaking the overall record structure.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="scope-col-label">② Back Office Platform</div>
+      <ul class="scope-bullets">
+        <li>Designed the <strong>back office system</strong> used by Biometrid's internal teams and B2B client administrators; the operational layer that sits behind every verification flow.</li>
+        <li>Created interfaces for <strong>managing verification cases, document review, and compliance audit trails</strong> — giving operators full visibility of the state of every identity in the system.</li>
+        <li>Designed <strong>role-based access and dashboard views</strong> for different operator types: client admins configuring their own flows and compliance reviewers.</li>
+        <li>Built product-wide <strong>design system</strong> spanning both the user-facing product and back office platform ensuring consistency, faster iteration, and brand flexibility for B2B clients.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="scope-col-label">③ Call Centre</div>
+      <ul class="scope-bullets">
+        <li>Designed a <strong>specialist call centre</strong> enabling agents to manage live video calls with users whose identity could not be verified automatically, handling edge cases, document disputes, and failed biometric checks.</li>
+        <li>Agents needed to view, assess, and act on multiple simultaneous video verification sessions — requiring a queue management interface that surfaces priority cases, call status, and identity context in a single view.</li>
+        <li>Designed for a <strong>high-pressure operational environment</strong> where agent <strong>speed and accuracy</strong> directly determines verification pass rates and client SLA compliance.</li>
+        <li>The call centre layer bridges AI automation and human judgement, making it one of the most complex interaction design challenges in the product, with both <strong>operator UX and end-user trust</strong> at stake simultaneously.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Screen 1 + features -->
+  <div class="split-row">
+    <div class="screen-col">
+      <!-- Replace with: <img src="biometrid-screen1.jpg" alt="Biometrid back office dashboard"> -->
+      <div class="screen-placeholder">
+        <div style="font-size:2rem;opacity:0.2">⊞</div>
+        <p>Add biometrid-screen1.jpg</p>
+      </div>
+    </div>
+    <div class="features-col">
+      <div class="feature-item">
+        <div class="feature-icon">⊞</div>
+        <div>
+          <div class="feature-title">Data Clusters</div>
+          <div class="feature-desc">Modular systems designed to be easy to add, edit, or remove. Only the needed parts of a contract are shown at any time.<br/>Each cluster is self-contained, reducing cognitive load and allowing different user roles to interact with only what's relevant to them.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">◈</div>
+        <div>
+          <div class="feature-title">Status &amp; Management</div>
+          <div class="feature-desc">A single scan of the contract surface reveals all active statuses (expiring, pending, active, flagged) alongside the responsible sales manager. No searching, no filtering. Priority information is always visible on load.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">☎</div>
+        <div>
+          <div class="feature-title">Call Recordings &amp; Documents</div>
+          <div class="feature-desc">All calls and documents exchanged between Iberdrola and the client are stored and surfaced directly on the contract record giving managers, sales staff, and technicians a full communication trail without switching tools or systems.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">☰</div>
+        <div>
+          <div class="feature-title">Observations &amp; History</div>
+          <div class="feature-desc">Managers, field sales staff, and technicians can each add contextual notes directly to the contract and review the full chronological history of every step the contract has been through.<br/>A shared source of truth across all roles, replacing scattered emails and verbal handoffs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2 + features (repeated block as per design) -->
+  <div class="split-row">
+    <div class="screen-col">
+      <!-- Replace with: <img src="biometrid-screen2.jpg" alt="Biometrid call centre"> -->
+      <div class="screen-placeholder">
+        <div style="font-size:2rem;opacity:0.2">☎</div>
+        <p>Add biometrid-screen2.jpg</p>
+      </div>
+    </div>
+    <div class="features-col">
+      <div class="feature-item">
+        <div class="feature-icon">⊞</div>
+        <div>
+          <div class="feature-title">Data Clusters</div>
+          <div class="feature-desc">Modular systems designed to be easy to add, edit, or remove. Only the needed parts of a contract are shown at any time.<br/>Each cluster is self-contained, reducing cognitive load and allowing different user roles to interact with only what's relevant to them.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">◈</div>
+        <div>
+          <div class="feature-title">Status &amp; Management</div>
+          <div class="feature-desc">A single scan of the contract surface reveals all active statuses (expiring, pending, active, flagged) alongside the responsible sales manager. No searching, no filtering. Priority information is always visible on load.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">☎</div>
+        <div>
+          <div class="feature-title">Call Recordings &amp; Documents</div>
+          <div class="feature-desc">All calls and documents exchanged between Iberdrola and the client are stored and surfaced directly on the contract record giving managers, sales staff, and technicians a full communication trail without switching tools or systems.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">☰</div>
+        <div>
+          <div class="feature-title">Observations &amp; History</div>
+          <div class="feature-desc">Managers, field sales staff, and technicians can each add contextual notes directly to the contract and review the full chronological history of every step the contract has been through.<br/>A shared source of truth across all roles, replacing scattered emails and verbal handoffs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2 class="cta-headline">Let's make<br/>something <em>real.</em></h2>
+  <p class="cta-sub">Open to senior product design roles — national and international. Remote-friendly. Available for a conversation.</p>
+  <div class="cta-btns">
+    <a href="mailto:junabastos@outlook.pt" class="cta-btn">
+      <span class="cta-btn-label">Email</span>
+      <span class="cta-btn-val">junabastos@outlook.pt</span>
+    </a>
+    <a href="tel:+351918303311" class="cta-btn">
+      <span class="cta-btn-label">Phone Number</span>
+      <span class="cta-btn-val">+351 918 303 311</span>
+    </a>
+  </div>
+  <p class="cta-sig">Joana Bastos.</p>
+</div>
+
+<footer>
+  <span class="footer-name">Joana Bastos.</span>
+  <ul class="footer-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="biometrid.html">Biometrid</a></li>
+    <li><a href="iberdrola.html">Iberdrola</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+  </ul>
+</footer>
+
+<script>
+  function toggleNav() { document.getElementById('mobileNav').classList.toggle('open'); }
+</script>
+</body>
+</html>
