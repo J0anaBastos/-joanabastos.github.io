@@ -7,67 +7,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg:      #111110;
-      --bg-mid:  #191917;
-      --bg-card: #1e1e1b;
-      --lime:    #c8f135;
-      --white:   #f0ede6;
-      --muted:   #7a7a72;
-      --border:  rgba(240,237,230,0.10);
-      --serif:   'Playfair Display', Georgia, serif;
-      --sans:    'DM Sans', sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg); color: var(--white);
-      font-family: var(--sans); font-size: 15px;
-      line-height: 1.65; overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 52px; display: flex; align-items: center; justify-content: space-between;
-      padding: 0 36px;
-      background: rgba(17,17,16,0.92); backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-family: var(--serif); font-weight: 900; font-size: 1rem; color: var(--white); text-decoration: none; }
-    .nav-center { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-center a { color: var(--white); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; transition: opacity 0.2s; }
-    .nav-center a:hover { opacity: 1; }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown > span { color: var(--white); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; cursor: pointer; user-select: none; }
-    .nav-dropdown:hover > span { opacity: 1; }
-    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 14px); left: 0; background: var(--bg-card); border: 1px solid var(--border); min-width: 150px; flex-direction: column; }
-    .nav-dropdown:hover .nav-dropdown-menu { display: flex; }
-    .nav-dropdown-menu a { display: block; padding: 11px 18px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); text-decoration: none; opacity: 0.65; border-bottom: 1px solid var(--border); transition: opacity 0.2s; }
-    .nav-dropdown-menu a:last-child { border-bottom: none; }
-    .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { opacity: 1; color: var(--lime); }
-    .btn-nav { background: var(--lime); color: #111; font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 9px 18px; text-decoration: none; }
-    .btn-nav:hover { opacity: 0.85; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); }
-    .mobile-nav { display: none; position: fixed; top: 52px; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 199; flex-direction: column; padding: 40px 32px; gap: 4px; }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: var(--white); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .mobile-nav a:hover { color: var(--lime); }
-    .mobile-nav .btn-nav { font-family: var(--sans); font-size: 0.8rem; margin-top: 20px; text-align: center; display: block; }
-
     /* PAGE HEADER */
-    .page-header { padding: 100px 36px 48px; max-width: 1240px; margin: 0 auto; }
+    .page-header { padding: 108px 36px 48px; max-width: 1240px; margin: 0 auto; }
     .breadcrumb {
       display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-size: 0.74rem; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 20px;
     }
-    .breadcrumb span { opacity: 0.5; }
+    .breadcrumb span { opacity: 0.55; }
     .page-title {
       font-family: var(--serif);
-      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
       font-weight: 900; letter-spacing: -0.02em; line-height: 1.05;
     }
 
@@ -78,46 +30,42 @@
     .intro-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
     .intro-box { padding: 28px; border: 1px solid var(--border); }
     .intro-box.highlight { border-color: rgba(200,241,53,0.4); background: rgba(200,241,53,0.025); }
-    .box-label { font-size: 0.60rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
-    .box-text { font-size: 0.80rem; color: rgba(240,237,230,0.68); line-height: 1.78; }
+    .box-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
+    .box-text { font-size: 0.92rem; color: rgba(240,237,230,0.70); line-height: 1.78; }
     .box-text strong { color: var(--white); font-weight: 500; }
-
-    /* Outcomes list */
     .outcomes-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .outcomes-list li { font-size: 0.80rem; color: rgba(240,237,230,0.78); line-height: 1.65; }
+    .outcomes-list li { font-size: 0.92rem; color: rgba(240,237,230,0.80); line-height: 1.65; }
 
     /* 2-col challenge/design */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 16px; }
-    .col-label {
-      font-size: 0.60rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 20px;
-    }
+    .col-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
     .col-bullets { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-    .col-bullets li { font-size: 0.80rem; color: rgba(240,237,230,0.68); line-height: 1.72; padding-left: 14px; position: relative; }
+    .col-bullets li { font-size: 0.90rem; color: rgba(240,237,230,0.68); line-height: 1.72; padding-left: 14px; position: relative; }
     .col-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--muted); }
     .col-bullets li strong { color: var(--white); font-weight: 500; }
 
-    /* repeated section label (as in Figma) */
-    .section-label {
-      font-size: 0.60rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 32px; margin-top: 48px;
-    }
+    /* Repeated section label */
+    .section-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; margin-top: 52px; }
 
-    /* Split: features left + screen right */
-    .split-row {
-      display: grid; grid-template-columns: 1fr 1.2fr;
-      gap: 24px; align-items: start; margin-bottom: 64px;
-    }
-    .features-col { display: flex; flex-direction: column; gap: 0; }
+    /* Split: features left, screen right */
+    .split-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; align-items: start; margin-bottom: 64px; }
+
+    /* Feature items — icon double-sized, lime coloured */
+    .features-col { display: flex; flex-direction: column; }
     .feature-item {
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: start;
     }
     .feature-item:first-child { border-top: 1px solid var(--border); }
-    .feature-icon { width: 26px; height: 26px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-top: 2px; flex-shrink: 0; }
-    .feature-title { font-size: 0.83rem; font-weight: 500; margin-bottom: 5px; }
-    .feature-desc { font-size: 0.74rem; color: rgba(240,237,230,0.60); line-height: 1.68; }
+    .feature-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(200,241,53,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--lime);
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .feature-title { font-size: 0.97rem; font-weight: 500; margin-bottom: 6px; }
+    .feature-desc { font-size: 0.85rem; color: rgba(240,237,230,0.62); line-height: 1.68; }
 
     .screen-col {
       background: var(--bg-card); border: 1px solid var(--border);
@@ -125,65 +73,31 @@
     }
     .screen-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .screen-placeholder { text-align: center; color: var(--muted); padding: 32px; }
-    .screen-placeholder p { font-size: 0.72rem; letter-spacing: 0.08em; margin-top: 8px; }
+    .screen-placeholder p { font-size: 0.82rem; letter-spacing: 0.08em; margin-top: 8px; }
 
-    /* FAB */
-    .fab {
-      position: fixed; bottom: 32px; right: 32px;
-      width: 42px; height: 42px;
-      background: var(--lime); color: #111;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; text-decoration: none; border-radius: 50%;
-      box-shadow: 0 4px 16px rgba(200,241,53,0.25);
-      z-index: 150; transition: opacity 0.2s;
+    /* On mobile, remove border from intro boxes */
+    @media (max-width: 768px) {
+      .intro-box { border: none; padding: 0; }
+      .intro-box.highlight { background: none; padding: 0; }
+      .intro-row { gap: 32px; }
     }
-    .fab:hover { opacity: 0.85; }
-
-    /* CTA */
-    .cta-wrap { background: var(--bg); border-top: 1px solid var(--border); padding: 100px 36px 60px; text-align: center; }
-    .cta-headline { font-family: var(--serif); font-size: clamp(3rem, 7.5vw, 7rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 16px; }
-    .cta-headline em { font-style: italic; color: var(--lime); }
-    .cta-sub { font-size: 0.80rem; color: var(--muted); max-width: 310px; margin: 0 auto 40px; }
-    .cta-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .cta-btn { display: flex; flex-direction: column; align-items: flex-start; padding: 14px 22px; border: 1px solid var(--border); text-decoration: none; color: var(--white); min-width: 185px; transition: border-color 0.2s; }
-    .cta-btn:hover { border-color: var(--lime); }
-    .cta-btn-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .cta-btn-val { font-size: 0.82rem; font-weight: 500; }
-    .cta-sig { margin-top: 44px; font-family: var(--serif); font-size: 0.82rem; color: var(--muted); }
-
-    footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex; align-items: center; justify-content: space-between; }
-    .footer-name { font-family: var(--serif); font-size: 0.80rem; font-weight: 700; color: var(--muted); }
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .intro-row, .two-col, .split-row { grid-template-columns: 1fr; }
     }
-    @media (max-width: 640px) {
-      nav { padding: 0 20px; }
-      .nav-center, .btn-nav { display: none; }
-      .hamburger { display: flex; }
-      .page-header { padding: 80px 20px 36px; }
+    @media (max-width: 768px) {
+      .page-header { padding: 88px 20px 36px; }
       .content { padding: 0 20px 72px; }
-      .cta-wrap { padding: 72px 20px 48px; }
-      .cta-btns { flex-direction: column; align-items: center; }
-      .cta-btn { width: 100%; max-width: 280px; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 20px; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
     .breadcrumb { animation: fadeUp 0.5s ease 0.05s both; }
     .page-title  { animation: fadeUp 0.5s ease 0.15s both; }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">JB.</a>
   <ul class="nav-center">
@@ -197,18 +111,31 @@
     </li>
     <li><a href="index.html#experience">Experience</a></li>
   </ul>
-  <a href="mailto:junabastos@outlook.pt" class="btn-nav">Get in touch</a>
+  <a href="mailto:jumabastos@outlook.pt" class="btn-nav">Get in touch</a>
   <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="index.html#about">About</a>
-  <a href="biometrid.html">Biometrid</a>
-  <a href="iberdrola.html">Iberdrola</a>
-  <a href="index.html#experience">Experience</a>
-  <a href="mailto:junabastos@outlook.pt" class="btn-nav">Get in touch</a>
+  <div class="mobile-nav-item">
+    <a href="index.html#about">About</a>
+  </div>
+  <div class="mobile-nav-item">
+    <div class="mobile-work-label" onclick="toggleWork()">
+      <span style="font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--white);padding:14px 0;display:block;">Work</span>
+      <span class="mobile-work-arrow" id="workArrow">▾</span>
+    </div>
+    <div class="mobile-subnav" id="workSubnav">
+      <a href="biometrid.html">Biometrid</a>
+      <a href="iberdrola.html" style="color:var(--lime)">Iberdrola</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="index.html#experience">Experience</a>
+  </div>
+  <a href="mailto:jumabastos@outlook.pt" class="mobile-cta">Get in touch</a>
 </div>
 
 <a href="#" class="fab" title="Back to top">↑</a>
@@ -216,10 +143,8 @@
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="breadcrumb">
-    <span>Enterprise UX</span>
-    <span>·</span>
-    <span>Digitisation</span>
-    <span>·</span>
+    <span>Enterprise UX</span><span>·</span>
+    <span>Digitisation</span><span>·</span>
     <span>Multi-Role Systems</span>
   </div>
   <h1 class="page-title">Iberdrola Contract Platform</h1>
@@ -244,7 +169,7 @@
     </div>
   </div>
 
-  <!-- Challenge + What I designed -->
+  <!-- Challenge + What I Designed -->
   <div class="two-col">
     <div>
       <div class="col-label">The Design Challenge</div>
@@ -266,10 +191,10 @@
     </div>
   </div>
 
-  <!-- Repeated label (as in original design) -->
+  <!-- Repeated label as per original design -->
   <div class="section-label">The Design Challenge</div>
 
-  <!-- Features + Screen side by side -->
+  <!-- Features + Screen -->
   <div class="split-row">
     <div class="features-col">
       <div class="feature-item">
@@ -305,22 +230,22 @@
     <div class="screen-col">
       <!-- Replace with: <img src="iberdrola-screen.jpg" alt="Iberdrola contract platform"> -->
       <div class="screen-placeholder">
-        <div style="font-size:2rem;opacity:0.2">⊞</div>
+        <div style="font-size:2.5rem;opacity:0.15;color:var(--lime)">⊞</div>
         <p>Add iberdrola-screen.jpg</p>
       </div>
     </div>
   </div>
 
-</div>
+</div><!-- /content -->
 
 <!-- CTA -->
 <div class="cta-wrap">
   <h2 class="cta-headline">Let's make<br/>something <em>real.</em></h2>
   <p class="cta-sub">Open to senior product design roles — national and international. Remote-friendly. Available for a conversation.</p>
   <div class="cta-btns">
-    <a href="mailto:junabastos@outlook.pt" class="cta-btn">
+    <a href="mailto:jumabastos@outlook.pt" class="cta-btn">
       <span class="cta-btn-label">Email</span>
-      <span class="cta-btn-val">junabastos@outlook.pt</span>
+      <span class="cta-btn-val">jumabastos@outlook.pt</span>
     </a>
     <a href="tel:+351918303311" class="cta-btn">
       <span class="cta-btn-label">Phone Number</span>
@@ -342,6 +267,10 @@
 
 <script>
   function toggleNav() { document.getElementById('mobileNav').classList.toggle('open'); }
+  function toggleWork() {
+    document.getElementById('workSubnav').classList.toggle('open');
+    document.getElementById('workArrow').classList.toggle('open');
+  }
 </script>
 </body>
 </html>
