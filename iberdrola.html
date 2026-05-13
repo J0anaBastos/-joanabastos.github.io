@@ -271,6 +271,40 @@
     document.getElementById('workSubnav').classList.toggle('open');
     document.getElementById('workArrow').classList.toggle('open');
   }
+
+  (function () {
+    const revealMap = [
+      { sel: '.intro-row .intro-box:first-child',  dir: 'left',  delay: 0   },
+      { sel: '.intro-row .intro-box:last-child',   dir: 'right', delay: 150 },
+      { sel: '.two-col > div:first-child',         dir: 'left',  delay: 0   },
+      { sel: '.two-col > div:last-child',          dir: 'right', delay: 150 },
+      { sel: '.split-row .features-col',           dir: 'left',  delay: 0   },
+      { sel: '.split-row .screen-col',             dir: 'right', delay: 120 },
+      { sel: '.cta-headline', dir: 'up', delay: 0   },
+      { sel: '.cta-sub',      dir: 'up', delay: 100 },
+      { sel: '.cta-btns',     dir: 'up', delay: 200 },
+    ];
+    revealMap.forEach(({ sel, dir, delay }) => {
+      const el = document.querySelector(sel);
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = dir === 'left'  ? 'translateX(-32px)'
+                         : dir === 'right' ? 'translateX(32px)'
+                         :                   'translateY(28px)';
+      el.style.transition = `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`;
+      el._revealed = false;
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target._revealed) {
+          e.target._revealed = true;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translate(0,0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    revealMap.forEach(({ sel }) => { const el = document.querySelector(sel); if (el) obs.observe(el); });
+  })();
 </script>
 </body>
 </html>

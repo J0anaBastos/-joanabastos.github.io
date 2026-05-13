@@ -30,9 +30,8 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
-  font-family: var(--sans); font-weight: 500;
-  font-size: 0.82rem; /* same size as btn-nav */
-  letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: var(--serif); font-weight: 900;
+  font-size: 1rem;
   color: var(--white); text-decoration: none;
   line-height: 1;
 }
@@ -216,4 +215,38 @@ footer {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Scroll-reveal system ──
+   Add [data-reveal] to any element.
+   Optional modifiers: data-reveal="up" (default) | "left" | "right"
+   Optional delay:     data-delay="100" (ms, multiples of 100)
+*/
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-reveal="up"],
+[data-reveal] {
+  transform: translateY(28px);
+}
+[data-reveal="left"]  { transform: translateX(-32px); }
+[data-reveal="right"] { transform: translateX(32px); }
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* staggered delay helpers */
+[data-delay="100"] { transition-delay: 0.10s; }
+[data-delay="200"] { transition-delay: 0.20s; }
+[data-delay="300"] { transition-delay: 0.30s; }
+[data-delay="400"] { transition-delay: 0.40s; }
+[data-delay="500"] { transition-delay: 0.50s; }
+[data-delay="600"] { transition-delay: 0.60s; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
 }

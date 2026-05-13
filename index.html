@@ -242,7 +242,7 @@
 <!-- ABOUT + EDUCATION -->
 <section id="about">
   <div class="about-inner">
-    <div>
+    <div data-reveal="left">
       <div class="sec-header">
         <span class="sec-num">01 —</span>
         <h2 class="sec-title">About</h2>
@@ -267,7 +267,7 @@
         <span class="tag">Frontend Design</span>
       </div>
     </div>
-    <div>
+    <div data-reveal="right" data-delay="200">
       <div class="sec-header">
         <span class="sec-num">02 —</span>
         <h2 class="sec-title">Education</h2>
@@ -348,7 +348,7 @@
           <div class="exp-role">UI/UX Designer</div>
           <div class="exp-type">NLP · AI · Millions of Users</div>
           <ul class="exp-bullets">
-            <li>Contributed to UI/UX of Monika — AI-powered multilingual media monitoring platform for expert users across journalism and media intelligence.</li>
+            <li>Contributed to UI/UX of Monitio — AI-powered multilingual media monitoring platform for expert users across journalism and media intelligence.</li>
             <li>Led visual modernisation of the Priberam Dictionary — one of the world's most used Portuguese-language reference tools, serving millions of users across Portugal, Brazil, and Mozambique.</li>
           </ul>
         </div>
@@ -357,7 +357,7 @@
       <div class="exp-item">
         <div class="exp-meta">
           <div class="exp-period">2020</div>
-          <div class="exp-company">Bit Software<br/>Contract</div>
+          <div class="exp-company">WIT Software<br/>Contract</div>
         </div>
         <div>
           <div class="exp-role">UI/UX Designer</div>
@@ -386,7 +386,7 @@
       <div class="exp-item">
         <div class="exp-meta">
           <div class="exp-period">2018</div>
-          <div class="exp-company">Zaglos</div>
+          <div class="exp-company">ZALOX</div>
         </div>
         <div>
           <div class="exp-role">Graphic Designer — UI/UX Designer</div>
@@ -431,14 +431,69 @@
 </footer>
 
 <script>
+  /* ── Nav ── */
   function toggleNav() { document.getElementById('mobileNav').classList.toggle('open'); }
   function closeNav()  { document.getElementById('mobileNav').classList.remove('open'); }
   function toggleWork() {
-    const sub = document.getElementById('workSubnav');
-    const arr = document.getElementById('workArrow');
-    sub.classList.toggle('open');
-    arr.classList.toggle('open');
+    document.getElementById('workSubnav').classList.toggle('open');
+    document.getElementById('workArrow').classList.toggle('open');
   }
+
+  /* ── Scroll-reveal: tag elements with data-reveal ── */
+  (function () {
+    // Programmatically mark elements to reveal
+    // Hero elements animate via CSS keyframes on load (already defined above)
+    // Everything below the fold uses IntersectionObserver
+
+    const revealMap = [
+      // About section
+      { sel: '#about .about-inner > div:first-child',  dir: 'left',  delay: 0   },
+      { sel: '#about .about-inner > div:last-child',   dir: 'right', delay: 150 },
+
+      // Experience header
+      { sel: '.exp-header',  dir: 'up', delay: 0 },
+
+      // Each experience row — staggered
+      { sel: '.exp-item:nth-child(1)', dir: 'up', delay: 0   },
+      { sel: '.exp-item:nth-child(2)', dir: 'up', delay: 80  },
+      { sel: '.exp-item:nth-child(3)', dir: 'up', delay: 160 },
+      { sel: '.exp-item:nth-child(4)', dir: 'up', delay: 240 },
+      { sel: '.exp-item:nth-child(5)', dir: 'up', delay: 320 },
+      { sel: '.exp-item:nth-child(6)', dir: 'up', delay: 400 },
+
+      // CTA
+      { sel: '.cta-headline', dir: 'up', delay: 0   },
+      { sel: '.cta-sub',      dir: 'up', delay: 100 },
+      { sel: '.cta-btns',     dir: 'up', delay: 200 },
+    ];
+
+    revealMap.forEach(({ sel, dir, delay }) => {
+      const el = document.querySelector(sel);
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = dir === 'left'  ? 'translateX(-32px)'
+                         : dir === 'right' ? 'translateX(32px)'
+                         :                   'translateY(28px)';
+      el.style.transition = `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`;
+      el._revealDelay = delay;
+      el._revealed = false;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target._revealed) {
+          entry.target._revealed = true;
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translate(0,0)';
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealMap.forEach(({ sel }) => {
+      const el = document.querySelector(sel);
+      if (el) observer.observe(el);
+    });
+  })();
 </script>
 </body>
 </html>
