@@ -35,31 +35,38 @@ nav {
   color: var(--white); text-decoration: none;
   line-height: 1;
 }
-.nav-center { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-center {
+  display: flex; align-items: center; gap: 32px; list-style: none;
+  height: 100%; /* stretch to fill nav height so items can centre */
+}
+.nav-center > li { display: flex; align-items: center; height: 100%; }
 .nav-center a {
   color: var(--white); text-decoration: none;
   font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
   opacity: 0.65; transition: opacity 0.2s;
+  line-height: 1; display: flex; align-items: center;
 }
 .nav-center a:hover { opacity: 1; }
 
-/* Work dropdown — stays open longer with padding bridge */
-.nav-dropdown { position: relative; }
+/* Work dropdown */
+.nav-dropdown { position: relative; display: flex; align-items: center; }
 .nav-dropdown > span {
   color: var(--white); font-size: 0.74rem; letter-spacing: 0.1em;
   text-transform: uppercase; opacity: 0.65; cursor: pointer;
-  user-select: none; transition: opacity 0.2s; display: inline-block;
-  padding-bottom: 10px; /* bridge gap so mouse can reach menu */
+  user-select: none; transition: opacity 0.2s;
+  line-height: 1; /* match anchor line-height so it sits at same baseline */
 }
 .nav-dropdown:hover > span { opacity: 1; }
+/* invisible bridge so mouse can travel to menu without it closing */
+.nav-dropdown::after {
+  content: ''; position: absolute;
+  top: 100%; left: 0; right: 0; height: 18px;
+}
 .nav-dropdown-menu {
   display: none; position: absolute;
-  top: calc(100% + 4px); /* tighter gap bridged by padding */
-  left: 0;
+  top: calc(100% + 18px); left: 0;
   background: var(--bg-card); border: 1px solid var(--border);
   min-width: 160px; flex-direction: column;
-  /* keep visible long enough to click */
-  transition: opacity 0.15s;
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: flex; }
 .nav-dropdown-menu a {

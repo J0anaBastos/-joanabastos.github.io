@@ -18,16 +18,20 @@
     .hero-inner {
       width: 100%; max-width: 1240px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1.4fr;
-      align-items: center; gap: 60px;
+      align-items: center; gap: 32px; /* reduced from 60px */
       padding: 60px 36px;
     }
 
     /* Left column: greeting+name and photo side by side */
     .hero-left {
       display: flex; flex-direction: row;
-      align-items: flex-end; gap: 28px;
+      align-items: flex-end; gap: 16px; /* reduced from 28px */
+      justify-content: flex-end; /* push content to the right */
     }
-    .hero-text { display: flex; flex-direction: column; justify-content: flex-end; }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      text-align: right; /* right-align the text block */
+    }
     .hero-greeting-name {
       font-family: var(--serif); font-weight: 700; font-size: 1.9rem;
       line-height: 1.15; color: var(--white);
@@ -274,14 +278,14 @@
       </div>
       <div class="edu-list">
         <div class="edu-item">
-          <div class="edu-year">2018</div>
-          <div class="edu-title">Degree in Communication Design</div>
-          <div class="edu-school">ESAD — Escola Superior de Artes e Design</div>
-        </div>
-        <div class="edu-item">
           <div class="edu-year">2021 – 2023</div>
           <div class="edu-title">UI &amp; UX Design · HTML &amp; CSS</div>
           <div class="edu-school">Udemy — Certified Courses</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2018</div>
+          <div class="edu-title">Degree in Communication Design</div>
+          <div class="edu-school">ESAD — Escola Superior de Artes e Design</div>
         </div>
         <div class="edu-item">
           <div class="edu-year">2015</div>
