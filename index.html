@@ -55,7 +55,12 @@
       position: relative; z-index: 1;
     }
     .hero-photo-placeholder {
-      <img class="hero-photo" src="photo.jpg" alt="Joana Bastos">
+      width: 200px; height: 260px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px;
+      color: var(--muted); font-size: 0.82rem; text-align: center;
+      position: relative; z-index: 1;
     }
 
     /* Right col */
@@ -249,11 +254,7 @@
         </div>
       </div>
       <div class="hero-photo-frame">
-        <!-- To add photo: replace the div below with <img class="hero-photo" src="photo.jpg" alt="Joana Bastos"> -->
         <img class="hero-photo" src="photo.jpg" alt="Joana Bastos">
-          <span style="font-size:1.6rem">📷</span>
-          <span>Add photo.jpg</span>
-        </div>
       </div>
     </div>
     <div class="hero-right">
