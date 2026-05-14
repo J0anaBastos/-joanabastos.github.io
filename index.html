@@ -176,9 +176,16 @@
     /* Only stack hero below 640px */
     @media (max-width: 640px) {
       .hero-inner { grid-template-columns: 1fr; padding: 36px 20px; }
-      .hero-left { justify-content: flex-start; gap: 20px; }
-      .hero-text { text-align: left; }
-      .hero-photo, .hero-photo-placeholder { width: 160px; height: 210px; }
+      /* Flip order: photo left, text right */
+      .hero-left {
+        justify-content: flex-start;
+        gap: 20px;
+        flex-direction: row; /* keep horizontal */
+      }
+      .hero-photo-frame { order: 1; } /* photo first */
+      .hero-text { order: 2; text-align: left; } /* text second */
+      .hero-photo, .hero-photo-placeholder { width: 130px; height: 170px; }
+      .hero-greeting-name { font-size: 1.3rem; }
       .about-inner { grid-template-columns: 1fr; gap: 48px; }
       #about { padding: 64px 20px; }
       #experience { padding: 64px 20px; }
