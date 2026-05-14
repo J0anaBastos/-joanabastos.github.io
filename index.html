@@ -17,20 +17,21 @@
     }
     .hero-inner {
       width: 100%; max-width: 1240px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.4fr;
-      align-items: center; gap: 32px; /* reduced from 60px */
+      display: grid; grid-template-columns: 1fr 1.5fr;
+      align-items: center; gap: 32px;
       padding: 60px 36px;
     }
 
-    /* Left column: greeting+name and photo side by side */
+    /* Left column: text (right-aligned) + photo, side by side */
     .hero-left {
       display: flex; flex-direction: row;
-      align-items: flex-end; gap: 16px; /* reduced from 28px */
-      justify-content: flex-end; /* push content to the right */
+      align-items: flex-end;
+      gap: 32px; /* equal to right-col left-padding equivalent */
+      justify-content: flex-end;
     }
     .hero-text {
       display: flex; flex-direction: column; justify-content: flex-end;
-      text-align: right; /* right-align the text block */
+      text-align: right;
     }
     .hero-greeting-name {
       font-family: var(--serif); font-weight: 700; font-size: 1.9rem;
@@ -62,11 +63,15 @@
       position: relative; z-index: 1;
     }
 
-    /* Right */
+    /* Right col */
+    .hero-right { }
     .hero-meta {
       font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 18px;
+      /* allow wrapping to vertical on narrow right column */
+      display: flex; flex-wrap: wrap; gap: 4px 16px;
     }
+    .hero-meta-sep { opacity: 0.4; }
     .hero-headline {
       font-family: var(--serif);
       font-size: clamp(2.6rem, 4.4vw, 4.6rem);
@@ -149,17 +154,32 @@
     .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--muted); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      .exp-item { grid-template-columns: 140px 1fr; }
+
+    /* Tablet — shrink photo slightly, compress gap, keep horizontal */
+    @media (max-width: 1024px) {
+      .hero-inner { gap: 24px; padding: 48px 28px; }
+      .hero-photo, .hero-photo-placeholder { width: 170px; height: 220px; }
+      .hero-greeting-name { font-size: 1.6rem; }
+    }
+
+    /* Narrow — keep two-column hero as long as possible */
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr 1.2fr; gap: 20px; }
+      .hero-photo, .hero-photo-placeholder { width: 140px; height: 185px; }
+      .hero-greeting-name { font-size: 1.4rem; }
+      .about-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .exp-item { grid-template-columns: 140px 1fr; gap: 28px; }
       .exp-list::before { left: 140px; }
       .exp-item::before { left: calc(140px - 4px); }
     }
-    @media (max-width: 768px) {
-      #hero { padding-top: 56px; }
-      .hero-inner { padding: 40px 20px; gap: 36px; }
-      .hero-left { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    /* Only stack hero below 640px */
+    @media (max-width: 640px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 36px 20px; }
+      .hero-left { justify-content: flex-start; gap: 20px; }
+      .hero-text { text-align: left; }
+      .hero-photo, .hero-photo-placeholder { width: 160px; height: 210px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
       #about { padding: 64px 20px; }
       #experience { padding: 64px 20px; }
       .exp-item { grid-template-columns: 1fr; gap: 10px; }
@@ -234,7 +254,13 @@
       </div>
     </div>
     <div class="hero-right">
-      <p class="hero-meta">Product Designer &nbsp;·&nbsp; Portugal &nbsp;·&nbsp; 7+ Years Experience</p>
+      <p class="hero-meta">
+        <span>Product Designer</span>
+        <span class="hero-meta-sep">·</span>
+        <span>Portugal</span>
+        <span class="hero-meta-sep">·</span>
+        <span>7+ Years Experience</span>
+      </p>
       <h1 class="hero-headline">
         Product designer who turns <em>complexity</em> into <em>clarity.</em>
       </h1>
@@ -334,7 +360,7 @@
         </div>
         <div>
           <div class="exp-role">UI/UX Designer — Strategy &amp; Architecture</div>
-          <div class="exp-type">AI · Maritime Logistics · KTM Funded</div>
+          <div class="exp-type">AI · Maritime Logistics</div>
           <ul class="exp-bullets">
             <li>Ran user research with terminal operators at Porto de Leixões — Portugal's largest container port.</li>
             <li>Designed AI sensor output visualisation — translating real-time machine container rearrangement suggestions into actionable dashboards for operational users.</li>
@@ -433,6 +459,8 @@
     <li><a href="#experience">Experience</a></li>
   </ul>
 </footer>
+
+<a href="#" class="fab" title="Back to top">↑</a>
 
 <script>
   /* ── Nav ── */
