@@ -162,6 +162,8 @@
       .hero-inner { gap: 24px; padding: 48px 28px; }
       .hero-photo, .hero-photo-placeholder { width: 170px; height: 220px; }
       .hero-greeting-name { font-size: 1.6rem; }
+      /* keep headline at full size as long as possible */
+      .hero-headline { font-size: 4.6rem; }
     }
 
     /* Narrow — keep two-column hero as long as possible */
@@ -169,6 +171,8 @@
       .hero-inner { grid-template-columns: 1fr 1.2fr; gap: 20px; }
       .hero-photo, .hero-photo-placeholder { width: 140px; height: 185px; }
       .hero-greeting-name { font-size: 1.4rem; }
+      /* still keep headline large */
+      .hero-headline { font-size: 4.2rem; }
       .about-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
       .exp-item { grid-template-columns: 140px 1fr; gap: 28px; }
       .exp-list::before { left: 140px; }
@@ -178,22 +182,28 @@
     /* Only stack hero below 640px */
     @media (max-width: 640px) {
       .hero-inner { grid-template-columns: 1fr; padding: 36px 20px; }
-      /* Flip order: photo left, text right */
+      /* photo left, text right — text bottom-aligned on mobile */
       .hero-left {
         justify-content: flex-start;
         gap: 20px;
-        flex-direction: row; /* keep horizontal */
+        flex-direction: row;
+        align-items: flex-end; /* bottom-align on mobile */
       }
-      .hero-photo-frame { order: 1; } /* photo first */
-      .hero-text { order: 2; text-align: left; } /* text second */
+      .hero-photo-frame { order: 1; }
+      .hero-text { order: 2; text-align: left; justify-content: flex-end; }
       .hero-photo, .hero-photo-placeholder { width: 130px; height: 170px; }
       .hero-greeting-name { font-size: 1.3rem; }
-      .hero-headline { font-size: calc(clamp(2.6rem, 4.4vw, 4.6rem) + 12px); }
+      /* +12px bigger on mobile, but don't let clamp shrink it — fix at a solid size */
+      .hero-headline { font-size: 3.2rem; }
       .about-inner { grid-template-columns: 1fr; gap: 48px; }
       #about { padding: 64px 20px; }
       #experience { padding: 64px 20px; }
       .exp-item { grid-template-columns: 1fr; gap: 10px; }
       .exp-list::before, .exp-item::before { display: none; }
+    }
+
+    @media (max-width: 400px) {
+      .hero-headline { font-size: 2.6rem; }
     }
 
     .hero-greeting-name { animation: fadeUp 0.65s ease 0.05s both; }
