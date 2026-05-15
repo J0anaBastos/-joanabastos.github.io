@@ -18,19 +18,19 @@
     .hero-inner {
       width: 100%; max-width: 1240px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1.5fr;
-      align-items: center; gap: 32px;
+      align-items: start; gap: 32px;
       padding: 60px 36px;
     }
 
     /* Left column: text (right-aligned) + photo, side by side */
     .hero-left {
       display: flex; flex-direction: row;
-      align-items: flex-end;
-      gap: 32px; /* equal to right-col left-padding equivalent */
+      align-items: flex-start; /* top-aligned */
+      gap: 32px;
       justify-content: flex-end;
     }
     .hero-text {
-      display: flex; flex-direction: column; justify-content: flex-end;
+      display: flex; flex-direction: column; justify-content: flex-start;
       text-align: right;
     }
     .hero-greeting-name {
@@ -45,14 +45,15 @@
     .hero-photo-frame::before {
       content: '';
       position: absolute;
-      top: -10px; left: -10px; right: 10px; bottom: 10px;
-      border: 2px solid var(--lime); border-radius: 10px;
+      top: -16px; left: -16px; right: 14px; bottom: 14px;
+      border: 2px solid var(--lime); border-radius: 14px;
       pointer-events: none; z-index: 0;
     }
     .hero-photo {
       display: block; width: 200px; height: 260px;
       object-fit: cover; object-position: top center;
       position: relative; z-index: 1;
+      border-radius: 8px;
     }
     .hero-photo-placeholder {
       width: 200px; height: 260px;
@@ -61,6 +62,7 @@
       flex-direction: column; gap: 8px;
       color: var(--muted); font-size: 0.82rem; text-align: center;
       position: relative; z-index: 1;
+      border-radius: 8px;
     }
 
     /* Right col */
@@ -280,10 +282,10 @@
         <h2 class="sec-title">About</h2>
       </div>
       <div class="about-body">
-        <p>I'm a Product Designer with <strong>7+ years of experience</strong> working on complex, high-stakes products where clarity and trust really matter.</p>
-        <p>I started in communication design, which shaped how I think about visual systems and clarity. Over time, I moved into software and have been working across fintech, AI, and enterprise tools, often in environments where things are complex, data-heavy, and mistakes have real consequences.</p>
-        <p>My work usually sits in that space where things can easily get overwhelming. <em>I enjoy breaking that complexity down</em>, structuring information in a way that makes sense, and designing flows that actually work in real-world conditions, not just ideal ones.</p>
-        <p>I tend to work closely with product and engineering, contributing beyond just the interface, helping define problems, shape solutions, and ship things that are useful, scalable, and make a measurable difference.</p>
+        <p>I'm a Product Designer with <strong>7+ years of experience</strong> designing complex digital products where clarity, trust, and accuracy are critical.</p>
+        <p>My background started in communication design, which shaped the way I think about visual systems, structure, and information clarity. Over the years, I transitioned into software and have worked across fintech, AI, and enterprise platforms, often in environments that are complex, data-heavy, and operationally critical.</p>
+        <p><em>I enjoy breaking down complexity</em>, helping users navigate workflows that need to perform reliably in real-world conditions. My work focuses on simplifying systems, improving usability, and designing scalable products that support both user and business needs.</p>
+        <p>I work closely with product and engineering teams throughout the product lifecycle, contributing beyond interface design to help define problems, shape product direction, and deliver solutions that are practical, scalable, and impactful.</p>
       </div>
       <div class="tags-row">
         <span class="tag">B2B SaaS</span>
