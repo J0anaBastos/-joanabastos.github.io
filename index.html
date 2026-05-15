@@ -18,15 +18,16 @@
     .hero-inner {
       width: 100%; max-width: 1400px; margin: 0 auto;
       display: grid; grid-template-columns: auto 1fr;
-      align-items: start; gap: 48px;
+      align-items: start;
+      gap: 48px; /* gap between left col and right col */
       padding: 60px 48px;
     }
 
-    /* Left column: text (right-aligned) + photo, side by side */
+    /* Left column: text + photo side by side */
     .hero-left {
       display: flex; flex-direction: row;
       align-items: flex-start;
-      gap: 24px;
+      gap: 48px; /* MATCH to hero-inner gap */
       justify-content: flex-end;
     }
     .hero-text {
@@ -46,23 +47,24 @@
       content: '';
       position: absolute;
       top: -16px; left: -16px; right: 14px; bottom: 14px;
-      border: 2px solid var(--lime); border-radius: 14px;
+      border: 2px solid var(--lime); border-radius: 14px; /* square frame */
       pointer-events: none; z-index: 0;
     }
+    /* Square photo */
     .hero-photo {
-      display: block; width: 220px; height: 280px;
+      display: block; width: 240px; height: 240px;
       object-fit: cover; object-position: top center;
       position: relative; z-index: 1;
-      border-radius: 8px;
+      border-radius: 10px; /* square with slight radius */
     }
     .hero-photo-placeholder {
-      width: 220px; height: 280px;
+      width: 240px; height: 240px;
       background: var(--bg-card); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       flex-direction: column; gap: 8px;
       color: var(--muted); font-size: 0.82rem; text-align: center;
       position: relative; z-index: 1;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     /* Right col */
@@ -73,10 +75,11 @@
       display: flex; flex-wrap: wrap; gap: 4px 12px;
     }
     .hero-meta-sep { opacity: 0.4; }
+    /* Headline: as large as possible, fills the right column */
     .hero-headline {
       font-family: var(--serif);
-      font-size: clamp(3.8rem, 7.5vw, 8rem);
-      font-weight: 900; line-height: 0.95; letter-spacing: -0.03em;
+      font-size: clamp(4rem, 9.5vw, 10.5rem);
+      font-weight: 900; line-height: 0.92; letter-spacing: -0.03em;
       margin-bottom: 48px;
     }
     .hero-headline em { font-style: italic; color: var(--lime); }
