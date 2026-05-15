@@ -16,17 +16,17 @@
       padding-top: 56px;
     }
     .hero-inner {
-      width: 100%; max-width: 1240px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.5fr;
-      align-items: start; gap: 32px;
-      padding: 60px 36px;
+      width: 100%; max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr;
+      align-items: start; gap: 48px;
+      padding: 60px 48px;
     }
 
     /* Left column: text (right-aligned) + photo, side by side */
     .hero-left {
       display: flex; flex-direction: row;
-      align-items: flex-start; /* top-aligned */
-      gap: 32px;
+      align-items: flex-start;
+      gap: 24px;
       justify-content: flex-end;
     }
     .hero-text {
@@ -50,13 +50,13 @@
       pointer-events: none; z-index: 0;
     }
     .hero-photo {
-      display: block; width: 200px; height: 260px;
+      display: block; width: 220px; height: 280px;
       object-fit: cover; object-position: top center;
       position: relative; z-index: 1;
       border-radius: 8px;
     }
     .hero-photo-placeholder {
-      width: 200px; height: 260px;
+      width: 220px; height: 280px;
       background: var(--bg-card); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       flex-direction: column; gap: 8px;
@@ -66,27 +66,26 @@
     }
 
     /* Right col */
-    .hero-right { }
+    .hero-right { display: flex; flex-direction: column; justify-content: flex-start; }
     .hero-meta {
-      font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 18px;
-      /* allow wrapping to vertical on narrow right column */
-      display: flex; flex-wrap: wrap; gap: 4px 16px;
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+      display: flex; flex-wrap: wrap; gap: 4px 12px;
     }
     .hero-meta-sep { opacity: 0.4; }
     .hero-headline {
       font-family: var(--serif);
-      font-size: clamp(2.6rem, 4.4vw, 4.6rem);
-      font-weight: 900; line-height: 1.03; letter-spacing: -0.02em;
-      margin-bottom: 40px;
+      font-size: clamp(3.8rem, 7.5vw, 8rem);
+      font-weight: 900; line-height: 0.95; letter-spacing: -0.03em;
+      margin-bottom: 48px;
     }
     .hero-headline em { font-style: italic; color: var(--lime); }
     .scroll-cue {
       display: flex; align-items: center; gap: 14px;
-      font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--muted);
     }
-    .scroll-cue::before { content: ''; display: block; width: 32px; height: 1px; background: var(--lime); }
+    .scroll-cue::before { content: ''; display: block; width: 40px; height: 1px; background: var(--lime); }
 
     /* ── ABOUT / EDUCATION ── */
     #about { background: var(--bg-mid); padding: 90px 36px; }
@@ -159,20 +158,18 @@
 
     /* Tablet — shrink photo slightly, compress gap, keep horizontal */
     @media (max-width: 1024px) {
-      .hero-inner { gap: 24px; padding: 48px 28px; }
-      .hero-photo, .hero-photo-placeholder { width: 170px; height: 220px; }
-      .hero-greeting-name { font-size: 1.6rem; }
-      /* keep headline at full size as long as possible */
-      .hero-headline { font-size: 4.6rem; }
+      .hero-inner { gap: 32px; padding: 48px 28px; }
+      .hero-photo, .hero-photo-placeholder { width: 190px; height: 245px; }
+      .hero-greeting-name { font-size: 1.7rem; }
+      .hero-headline { font-size: 6rem; }
     }
 
     /* Narrow — keep two-column hero as long as possible */
     @media (max-width: 860px) {
-      .hero-inner { grid-template-columns: 1fr 1.2fr; gap: 20px; }
-      .hero-photo, .hero-photo-placeholder { width: 140px; height: 185px; }
+      .hero-inner { gap: 20px; }
+      .hero-photo, .hero-photo-placeholder { width: 160px; height: 205px; }
       .hero-greeting-name { font-size: 1.4rem; }
-      /* still keep headline large */
-      .hero-headline { font-size: 4.2rem; }
+      .hero-headline { font-size: 4.8rem; }
       .about-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
       .exp-item { grid-template-columns: 140px 1fr; gap: 28px; }
       .exp-list::before { left: 140px; }
@@ -182,18 +179,16 @@
     /* Only stack hero below 640px */
     @media (max-width: 640px) {
       .hero-inner { grid-template-columns: 1fr; padding: 36px 20px; }
-      /* photo left, text right — text bottom-aligned on mobile */
       .hero-left {
         justify-content: flex-start;
         gap: 20px;
         flex-direction: row;
-        align-items: flex-end; /* bottom-align on mobile */
+        align-items: flex-end;
       }
       .hero-photo-frame { order: 1; }
       .hero-text { order: 2; text-align: left; justify-content: flex-end; }
       .hero-photo, .hero-photo-placeholder { width: 130px; height: 170px; }
       .hero-greeting-name { font-size: 1.3rem; }
-      /* +12px bigger on mobile, but don't let clamp shrink it — fix at a solid size */
       .hero-headline { font-size: 3.2rem; }
       .about-inner { grid-template-columns: 1fr; gap: 48px; }
       #about { padding: 64px 20px; }
@@ -271,6 +266,8 @@
     </div>
     <div class="hero-right">
       <p class="hero-meta">
+        <span>Product Designer</span>
+        <span class="hero-meta-sep">·</span>
         <span>Portugal</span>
         <span class="hero-meta-sep">·</span>
         <span>7+ Years Experience</span>

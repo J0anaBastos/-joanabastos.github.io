@@ -184,7 +184,7 @@ nav {
 /* ===== FOOTER ===== */
 footer {
   border-top: 1px solid var(--border);
-  padding: 20px 36px 40px; /* double bottom margin */
+  padding: 32px 36px 48px; /* top padding added, double bottom */
   display: flex; align-items: center; justify-content: space-between;
 }
 .footer-name { font-family: var(--serif); font-size: 0.92rem; font-weight: 700; color: var(--muted); }
