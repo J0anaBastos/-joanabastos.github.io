@@ -170,15 +170,23 @@ nav {
 .cta-headline em { font-style: italic; color: var(--lime); }
 .cta-sub { font-size: 0.92rem; color: var(--muted); max-width: 320px; margin: 0 auto 40px; }
 .cta-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.cta-btn {
+.cta-btn { 
   display: flex; flex-direction: column; align-items: flex-start;
   padding: 14px 22px; border: 1px solid var(--border);
   text-decoration: none; color: var(--white);
   min-width: 185px; transition: border-color 0.2s;
+  cursor: default;
 }
 .cta-btn:hover { border-color: var(--lime); }
 .cta-btn-label { font-size: 0.70rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.cta-btn-val { font-size: 0.94rem; font-weight: 500; }
+.cta-btn-val { font-size: 0.94rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.copy-hint {
+  font-size: 0.60rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--border);
+  padding: 2px 7px; transition: color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+.copyable:hover .copy-hint { border-color: var(--lime); color: var(--lime); }
 .cta-sig { margin-top: 44px; font-family: var(--serif); font-size: 0.94rem; color: var(--muted); }
 
 /* ===== FOOTER ===== */

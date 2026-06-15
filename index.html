@@ -226,7 +226,7 @@
     </li>
     <li><a href="#experience">Experience</a></li>
   </ul>
-  <a href="mailto:jumabastos@outlook.pt" class="btn-nav">Get in touch</a>
+  <a href="#contact" class="btn-nav">Get in touch</a>
   <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -250,7 +250,7 @@
   <div class="mobile-nav-item">
     <a href="#experience" onclick="closeNav()">Experience</a>
   </div>
-  <a href="mailto:jumabastos@outlook.pt" class="mobile-cta">Get in touch</a>
+  <a href="#contact" class="mobile-cta">Get in touch</a>
 </div>
 
 <!-- HERO -->
@@ -446,18 +446,18 @@
 </section>
 
 <!-- CTA -->
-<div class="cta-wrap">
+<div class="cta-wrap" id="contact">
   <h2 class="cta-headline">Let's make<br/>something <em>real.</em></h2>
   <p class="cta-sub">Open to senior product design roles — national and international. Remote-friendly. Available for a conversation.</p>
   <div class="cta-btns">
-    <a href="mailto:jumabastos@outlook.pt" class="cta-btn">
+    <div class="cta-btn">
       <span class="cta-btn-label">Email</span>
-      <span class="cta-btn-val">jumabastos@outlook.pt</span>
-    </a>
-    <a href="tel:+351918303311" class="cta-btn">
+      <span class="cta-btn-val copyable" data-copy="jumabastos@outlook.pt">jumabastos@outlook.pt <span class="copy-hint">copy</span></span>
+    </div>
+    <div class="cta-btn">
       <span class="cta-btn-label">Phone Number</span>
-      <span class="cta-btn-val">+351 918 303 311</span>
-    </a>
+      <span class="cta-btn-val copyable" data-copy="+351918303311">+351 918 303 311 <span class="copy-hint">copy</span></span>
+    </div>
   </div>
   <p class="cta-sig"></p>
 </div>
@@ -482,6 +482,19 @@
     document.getElementById('workSubnav').classList.toggle('open');
     document.getElementById('workArrow').classList.toggle('open');
   }
+
+  /* ── Copy to clipboard ── */
+  document.querySelectorAll('.copyable').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => {
+      navigator.clipboard.writeText(el.dataset.copy).then(() => {
+        const hint = el.querySelector('.copy-hint');
+        hint.textContent = 'copied!';
+        hint.style.color = 'var(--lime)';
+        setTimeout(() => { hint.textContent = 'copy'; hint.style.color = ''; }, 2000);
+      });
+    });
+  });
 
   /* ── Scroll-reveal: tag elements with data-reveal ── */
   (function () {
