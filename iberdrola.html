@@ -191,47 +191,76 @@
     </div>
   </div>
 
-  <!-- Repeated label as per original design -->
-  <div class="section-label">The Design Challenge</div>
-
-  <!-- Features + Screen -->
+  <!-- Screen 1: Contract list + feature cards -->
   <div class="split-row">
+    <div class="screen-col">
+      <img src="Component_7___1.png" alt="Iberdrola contract list — status pipeline and multi-contract management view">
+    </div>
     <div class="features-col">
-      <div class="feature-item">
-        <div class="feature-icon">⊞</div>
-        <div>
-          <div class="feature-title">Data Clusters</div>
-          <div class="feature-desc">Modular systems designed to be easy to add, edit, or remove. Only the needed parts of a contract are shown at any time.<br/>Each cluster is self-contained, reducing cognitive load and allowing different user roles to interact with only what's relevant to them.</div>
-        </div>
-      </div>
       <div class="feature-item">
         <div class="feature-icon">◈</div>
         <div>
-          <div class="feature-title">Status &amp; Management</div>
-          <div class="feature-desc">A single scan of the contract surface reveals all active statuses (expiring, pending, active, flagged) alongside the responsible sales manager. No searching, no filtering. Priority information is always visible on load.</div>
+          <div class="feature-title">Status Pipeline at a Glance</div>
+          <div class="feature-desc">Every contract moves through a defined pipeline — Pré-Venda, Pedido Baixa, Em Fornecimento, Control, Backoffice — surfaced as colour-coded status badges directly in the list. Managers see the state of every record without opening a single contract.</div>
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">☎</div>
+        <div class="feature-icon">⊞</div>
         <div>
-          <div class="feature-title">Call Recordings &amp; Documents</div>
-          <div class="feature-desc">All calls and documents exchanged between Iberdrola and the client are stored and surfaced directly on the contract record giving managers, sales staff, and technicians a full communication trail without switching tools or systems.</div>
+          <div class="feature-title">Sortable, Filterable Contract Table</div>
+          <div class="feature-desc">The contract list exposes the fields that matter most to each role: product type, sale ID, client name, NIF, responsible commercial, and VTV status. Every column is sortable. Bulk status updates can be applied across multiple records simultaneously without entering each one.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">◉</div>
+        <div>
+          <div class="feature-title">VTV &amp; Validation Indicators</div>
+          <div class="feature-desc">A dedicated VTV column shows real-time validation status per contract using colour-coded dot indicators — green for validated, amber for pending. Field sales teams can prioritise follow-ups at a glance without needing to open individual records or run separate reports.</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">☰</div>
         <div>
-          <div class="feature-title">Observations &amp; History</div>
-          <div class="feature-desc">Managers, field sales staff, and technicians can each add contextual notes directly to the contract and review the full chronological history of every step the contract has been through.<br/>A shared source of truth across all roles, replacing scattered emails and verbal handoffs.</div>
+          <div class="feature-title">Quick Actions Per Record</div>
+          <div class="feature-desc">Inline action controls on every row give agents direct access to observations and client search without leaving the list. Designed to eliminate the back-and-forth between list and detail views that slowed down the previous paper-based workflow.</div>
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- Screen 2: Contract record + feature cards -->
+  <div class="split-row">
     <div class="screen-col">
-      <!-- Replace with: <img src="iberdrola-screen.jpg" alt="Iberdrola contract platform"> -->
-      <div class="screen-placeholder">
-        <div style="font-size:2.5rem;opacity:0.15;color:var(--lime)">⊞</div>
-        <p>Add iberdrola-screen.jpg</p>
+      <img src="Dual__morada_de_fornecimento_e_correspondência_é_a_mesma_.png" alt="Iberdrola contract record — modular data clusters, VTV history, and observations">
+    </div>
+    <div class="features-col">
+      <div class="feature-item">
+        <div class="feature-icon">⊞</div>
+        <div>
+          <div class="feature-title">Modular Data Clusters</div>
+          <div class="feature-desc">The contract record is structured as independent, collapsible clusters — client data, supply address, electricity and gas supply points, property details, inspection records, billing conditions, and products and services. Each section can be added, edited, or removed without affecting the others, so users interact only with what their role requires.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">↗</div>
+        <div>
+          <div class="feature-title">VTV History &amp; Annexes</div>
+          <div class="feature-desc">A dedicated VTV history panel logs every visit with date, outcome, and free-text observation. Document annexes — signed contracts, IDs, inspection certificates — are attached directly to the record and accessible without switching tools. The full paper trail is always one scroll away.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">☎</div>
+        <div>
+          <div class="feature-title">Threaded Observations</div>
+          <div class="feature-desc">Managers, field sales staff, and back-office agents can each add contextual notes directly to the contract. Change logs (address updates, pending documentation flags) surface as timestamped entries in the same thread, giving every team member a shared, chronological source of truth.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">◈</div>
+        <div>
+          <div class="feature-title">Contract Sidebar &amp; Responsible Party</div>
+          <div class="feature-desc">A persistent sidebar surfaces the contract ID, current status, responsible commercial, key dates, and validation flags at all times. No matter how far down the record a user scrolls, the critical context — who owns this contract, where it stands, what's pending — is always visible.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -295,8 +324,10 @@
       { sel: '.intro-row .intro-box:last-child',   dir: 'right', delay: 150 },
       { sel: '.two-col > div:first-child',         dir: 'left',  delay: 0   },
       { sel: '.two-col > div:last-child',          dir: 'right', delay: 150 },
-      { sel: '.split-row .features-col',           dir: 'left',  delay: 0   },
-      { sel: '.split-row .screen-col',             dir: 'right', delay: 120 },
+      { sel: '.split-row:nth-of-type(1) .screen-col',   dir: 'left',  delay: 0   },
+      { sel: '.split-row:nth-of-type(1) .features-col', dir: 'right', delay: 100 },
+      { sel: '.split-row:nth-of-type(2) .screen-col',   dir: 'left',  delay: 0   },
+      { sel: '.split-row:nth-of-type(2) .features-col', dir: 'right', delay: 100 },
       { sel: '.cta-headline', dir: 'up', delay: 0   },
       { sel: '.cta-sub',      dir: 'up', delay: 100 },
       { sel: '.cta-btns',     dir: 'up', delay: 200 },
