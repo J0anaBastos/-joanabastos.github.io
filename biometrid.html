@@ -284,15 +284,20 @@
   <div class="cta-btns">
     <div class="cta-btn">
       <span class="cta-btn-label">Email</span>
-      <span class="cta-btn-val copyable" data-copy="jumabastos@outlook.pt">jumabastos@outlook.pt <span class="copy-hint">copy</span></span>
+      <span class="cta-btn-val copyable" data-copy="jumabastos@outlook.pt">jumabastos@outlook.pt
+        <span class="copy-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+      </span>
     </div>
     <div class="cta-btn">
       <span class="cta-btn-label">Phone Number</span>
-      <span class="cta-btn-val copyable" data-copy="+351918303311">+351 918 303 311 <span class="copy-hint">copy</span></span>
+      <span class="cta-btn-val copyable" data-copy="+351918303311">+351 918 303 311
+        <span class="copy-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+      </span>
     </div>
   </div>
   <p class="cta-sig"></p>
 </div>
+<div class="copy-toast" id="copyToast">Copied!</div>
 
 <footer>
   <span class="footer-name">Joana Bastos.</span>
@@ -315,10 +320,9 @@
     el.style.cursor = 'pointer';
     el.addEventListener('click', () => {
       navigator.clipboard.writeText(el.dataset.copy).then(() => {
-        const hint = el.querySelector('.copy-hint');
-        hint.textContent = 'copied!';
-        hint.style.color = 'var(--lime)';
-        setTimeout(() => { hint.textContent = 'copy'; hint.style.color = ''; }, 2000);
+        const toast = document.getElementById('copyToast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
       });
     });
   });
