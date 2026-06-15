@@ -175,18 +175,30 @@ nav {
   padding: 14px 22px; border: 1px solid var(--border);
   text-decoration: none; color: var(--white);
   min-width: 185px; transition: border-color 0.2s;
-  cursor: default;
+  cursor: pointer;
 }
 .cta-btn:hover { border-color: var(--lime); }
 .cta-btn-label { font-size: 0.70rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.cta-btn-val { font-size: 0.94rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-.copy-hint {
-  font-size: 0.60rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--muted); border: 1px solid var(--border);
-  padding: 2px 7px; transition: color 0.2s, border-color 0.2s;
-  flex-shrink: 0;
+.cta-btn-val { font-size: 0.94rem; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+.copy-hint { display: none; } /* icon removed */
+
+/* Toast */
+.copy-toast {
+  position: absolute;
+  background: var(--lime); color: #111;
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 8px 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  z-index: 9999;
+  white-space: nowrap;
+  transform: translateX(-50%) translateY(4px);
 }
-.copyable:hover .copy-hint { border-color: var(--lime); color: var(--lime); }
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 .cta-sig { margin-top: 44px; font-family: var(--serif); font-size: 0.94rem; color: var(--muted); }
 
 /* ===== FOOTER ===== */

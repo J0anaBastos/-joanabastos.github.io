@@ -243,17 +243,13 @@
   <h2 class="cta-headline">Let's make<br/>something <em>real.</em></h2>
   <p class="cta-sub">Open to senior product design roles (national and international). Remote-friendly. Available for a conversation.</p>
   <div class="cta-btns">
-    <div class="cta-btn">
+    <div class="cta-btn copyable" data-copy="jumabastos@outlook.pt">
       <span class="cta-btn-label">Email</span>
-      <span class="cta-btn-val copyable" data-copy="jumabastos@outlook.pt">jumabastos@outlook.pt
-        <span class="copy-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
-      </span>
+      <span class="cta-btn-val">jumabastos@outlook.pt</span>
     </div>
-    <div class="cta-btn">
+    <div class="cta-btn copyable" data-copy="+351918303311">
       <span class="cta-btn-label">Phone Number</span>
-      <span class="cta-btn-val copyable" data-copy="+351918303311">+351 918 303 311
-        <span class="copy-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
-      </span>
+      <span class="cta-btn-val">+351 918 303 311</span>
     </div>
   </div>
   <p class="cta-sig"></p>
@@ -282,6 +278,11 @@
     el.addEventListener('click', () => {
       navigator.clipboard.writeText(el.dataset.copy).then(() => {
         const toast = document.getElementById('copyToast');
+        const rect = el.getBoundingClientRect();
+        toast.style.left = (rect.left + rect.width / 2) + 'px';
+        toast.style.top  = (rect.top + window.scrollY - 48) + 'px';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.bottom = 'auto';
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 2000);
       });
