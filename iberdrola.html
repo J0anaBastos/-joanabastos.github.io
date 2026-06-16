@@ -37,7 +37,7 @@
     .outcomes-list li { font-size: 0.92rem; color: rgba(240,237,230,0.80); line-height: 1.65; }
 
     /* 2-col challenge/design */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 16px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
     .col-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
     .col-bullets { list-style: none; display: flex; flex-direction: column; gap: 18px; }
     .col-bullets li { font-size: 0.90rem; color: rgba(240,237,230,0.68); line-height: 1.72; padding-left: 14px; position: relative; }
@@ -69,9 +69,9 @@
 
     .screen-col {
       background: var(--bg-card); border: 1px solid var(--border);
-      min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+      display: flex; align-items: flex-start; justify-content: center; overflow: hidden;
     }
-    .screen-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .screen-col img { width: 100%; height: auto; object-fit: contain; display: block; vertical-align: top; }
     .screen-placeholder { text-align: center; color: var(--muted); padding: 32px; }
     .screen-placeholder p { font-size: 0.82rem; letter-spacing: 0.08em; margin-top: 8px; }
 
